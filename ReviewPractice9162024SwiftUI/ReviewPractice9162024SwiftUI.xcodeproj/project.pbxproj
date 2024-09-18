@@ -18,6 +18,8 @@
 		0221C5642C98C54A00CB2B02 /* HolidaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221C5632C98C54A00CB2B02 /* HolidaysViewModel.swift */; };
 		0221C5662C98C65F00CB2B02 /* HolidetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221C5652C98C65F00CB2B02 /* HolidetailView.swift */; };
 		0221C5682C98C67000CB2B02 /* HolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0221C5672C98C67000CB2B02 /* HolidayView.swift */; };
+		02DA22B82C9B578700B9F47F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DA22B72C9B578700B9F47F /* NetworkError.swift */; };
+		02DA22BA2C9B58F700B9F47F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DA22B92C9B58F700B9F47F /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		0221C5632C98C54A00CB2B02 /* HolidaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysViewModel.swift; sourceTree = "<group>"; };
 		0221C5652C98C65F00CB2B02 /* HolidetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidetailView.swift; sourceTree = "<group>"; };
 		0221C5672C98C67000CB2B02 /* HolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayView.swift; sourceTree = "<group>"; };
+		02DA22B72C9B578700B9F47F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		02DA22B92C9B58F700B9F47F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 		0221C5282C988D0200CB2B02 /* ReviewPractice9162024SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				02DA22B62C9B561000B9F47F /* Network */,
 				0221C5602C98C2F600CB2B02 /* Model */,
 				0221C55F2C98C2EF00CB2B02 /* Coordinator */,
 				0221C55E2C98C2E900CB2B02 /* ViewModel */,
@@ -169,6 +174,15 @@
 				0221C5612C98C32D00CB2B02 /* techEval9162024swiftui.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		02DA22B62C9B561000B9F47F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				02DA22B72C9B578700B9F47F /* NetworkError.swift */,
+				02DA22B92C9B58F700B9F47F /* NetworkService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +316,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0221C5662C98C65F00CB2B02 /* HolidetailView.swift in Sources */,
+				02DA22B82C9B578700B9F47F /* NetworkError.swift in Sources */,
+				02DA22BA2C9B58F700B9F47F /* NetworkService.swift in Sources */,
 				0221C5622C98C32D00CB2B02 /* techEval9162024swiftui.swift in Sources */,
 				0221C52C2C988D0200CB2B02 /* ContentView.swift in Sources */,
 				0221C5682C98C67000CB2B02 /* HolidayView.swift in Sources */,

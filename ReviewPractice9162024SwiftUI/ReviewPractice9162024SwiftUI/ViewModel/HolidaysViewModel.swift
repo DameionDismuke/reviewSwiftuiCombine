@@ -14,24 +14,20 @@ class HolidaysViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    private let networkService: NetworkServiceProtocol
+    
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
+        self.networkService = networkService
         fetchHolidays()
     }
     
     func fetchHolidays() {
-        guard let url = URL(string: "https://date.nager.at/api/v2/publicholidays/2024/US") else {
-            errorMessage = "URL isn't working"
-            return
-        }
-        
-        URLSession.shared.dataTaskPublisher(for: url)
-            .map { $0.data }
-            .decode(type: [Holidays].self, decoder: JSONDecoder())
+        networkService.fetchHolidays()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                    self?.errorMessage = error.localizedDescription
                 case .finished:
                     break
                 }

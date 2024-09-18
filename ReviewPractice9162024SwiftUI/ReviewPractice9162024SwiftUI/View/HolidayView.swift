@@ -12,25 +12,33 @@ struct HolidayView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.holidays) { holiday in
-                NavigationLink(destination: HolidetailView(holiday: holiday)) {
-                    VStack(alignment: .leading) {
-                        Text(holiday.localName)
-                            .font(.headline)
-                        Text(holiday.date)
-                            .font(.subheadline)
+            if viewModel.holidays.isEmpty {
+                VStack {
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundColor(.red)
+                            .padding()
+                    } else {
+                        Text("No holidays available.")
+                            .padding()
                     }
                 }
+            } else {
+                List(viewModel.holidays) { holiday in
+                    NavigationLink(destination: HolidetailView(holiday: holiday)) {
+                        VStack(alignment: .leading) {
+                            Text(holiday.localName)
+                                .font(.headline)
+                            Text(holiday.date)
+                                .font(.subheadline)
+                        }
+                    }
+                }
+                .navigationTitle("Holidays")
+                .onAppear {
+                    viewModel.fetchHolidays()
+                }
             }
-            .navigationTitle("Holidays")
-            .onAppear {
-                viewModel.fetchHolidays()
-            }
-        }
-        .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)) {
-            Alert(title: Text("Error"),
-                  message: Text(viewModel.errorMessage),
-                  dismissButton: .default(Text("OK")))
         }
     }
 }
