@@ -17,7 +17,6 @@ class HolidaysViewModel: ObservableObject {
                 applySearchFilter()
             }
         }
-
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -26,6 +25,7 @@ class HolidaysViewModel: ObservableObject {
     init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
         fetchHolidays()
+        addDebounce()
     }
     
     func fetchHolidays() {
@@ -43,14 +43,23 @@ class HolidaysViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+  
+    private func addDebounce() {
+        $searchText
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.applySearchFilter()
+            }
+            .store(in: &cancellables)
+    }
     
     private func applySearchFilter() {
-            if searchText.isEmpty {
-                filtereDays = holidays
-            } else {
-                filtereDays = holidays.filter {
-                    $0.localName.lowercased().contains(searchText.lowercased())
-                }
+        if searchText.isEmpty {
+            filtereDays = holidays
+        } else {
+            filtereDays = holidays.filter {
+                $0.localName.lowercased().contains(searchText.lowercased())
             }
         }
+    }
 }
