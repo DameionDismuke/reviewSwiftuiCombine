@@ -13,11 +13,10 @@ class HolidaysViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var filtereDays: [Holidays] = []
     @Published var searchText: String = "" {
-        didSet {
-            applySearchFilter()
+            didSet {
+                applySearchFilter()
+            }
         }
-    }
-    
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -44,7 +43,7 @@ class HolidaysViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
-    
+  
     private func addDebounce() {
         $searchText
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
